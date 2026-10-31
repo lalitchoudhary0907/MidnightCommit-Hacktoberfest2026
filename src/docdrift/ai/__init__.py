@@ -1,0 +1,1 @@
+"""Ai package for the DocDrift application."""

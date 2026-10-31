@@ -1,0 +1,1 @@
+"""Git package for the DocDrift application."""
