@@ -1,31 +1,16 @@
 """
-Analysis Package for DocDrift - Drift Detection Logic.
-
-This package provides the core logic for documenting drift detection using:
-
-- AI-based semantic similarity scoring
-- Deterministic code comparison methods
-- Pattern matching for detected changes
-- Confidence scoring and thresholding
+Analysis package for DocDrift.
 """
 
+from typing import Dict
 
-# ==============================================================================
-# Core Analysis Functions (to be implemented)
-# ==============================================================================
+from .python_analyzer import analyze_python_file, analyze_python_source
 
 
 def analyze_drift_text_pairs(text_1: str, text_2: str) -> float:
     """Analyze semantic similarity between two text segments."""
-    # TODO: Implement actual drift analysis using Qwen3.5 embeddings
-
-    # Placeholder return value
+    # Semantic similarity implementation will be added separately.
     return 0.75
-
-
-# ==============================================================================
-# Default Configuration
-# ==============================================================================
 
 
 DEFAULT_ANALYSIS_CONFIG = {
@@ -35,14 +20,14 @@ DEFAULT_ANALYSIS_CONFIG = {
 
 
 def configure_drift_analysis() -> Dict[str, float]:
-    """Get default drift analysis configuration."""
-
-    return DEFAULT_ANALYSIS_CONFIG
-
-
-# ==============================================================================
-# Main Export
-# ==============================================================================
+    """Return default drift analysis configuration."""
+    return DEFAULT_ANALYSIS_CONFIG.copy()
 
 
-__all__ = ["analyze_drift_text_pairs", "DEFAULT_ANALYSIS_CONFIG"]
+__all__ = [
+    "analyze_drift_text_pairs",
+    "analyze_python_source",
+    "analyze_python_file",
+    "configure_drift_analysis",
+    "DEFAULT_ANALYSIS_CONFIG",
+]
