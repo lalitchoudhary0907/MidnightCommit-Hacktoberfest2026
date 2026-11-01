@@ -1,0 +1,1 @@
+"""Docs package for the DocDrift application."""

@@ -9,22 +9,22 @@ from docdrift.errors import ConfigurationError
 @dataclass
 class Settings:
     repo_path: str = "./"
-    docs_globs: List[str] = field(default_factory=lambda: ["**/*.md", "**/*.rst"])
-    code_globs: List[str] = field(default_factory=lambda: ["**/*.py", "**/*.yml", "**/*.yaml"])
+    docs_globs: List[str] = field(default_factory=lambda: ['**/*.md', '**/*.rst'])
+    code_globs: List[str] = field(default_factory=lambda: ['**/*.py', '**/*.yml', '**/*.yaml'])
     exclude_dirs: List[str] = field(default_factory=lambda: [".git", ".venv", "node_modules", "build", "dist"])
     max_file_size_kb: int = 1024
     min_confidence: float = 0.7
     
     ai_enabled: bool = False
-    ollama_endpoint: str = "http://localhost:11434"
+    ollama_endpoint: str = 'http://localhost:11434'
     ollama_model: str = "gemma4:e4b"
     ollama_timeout: int = 120
     
     report_output_dir: str = "./docdrift-reports"
 
     @classmethod
-    def load(cls) -> "Settings":
-        settings = cls()
+    def load(cls, repo_path: str | Path | None = None) -> "Settings":
+        settings = cls(repo_path=str(repo_path) if repo_path is not None else './')
         settings._load_from_toml()
         settings._load_from_env()
         settings.validate()
