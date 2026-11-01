@@ -13,6 +13,7 @@ from .models import (
     ScanReport,
 )
 from .errors import DocDriftError
+from .detector import detect_drift
 
 __version__ = "0.1.0"
 __all__ = [
@@ -25,4 +26,5 @@ __all__ = [
     "DriftFinding",
     "ScanReport",
     "DocDriftError",
+    "detect_drift",
 ]

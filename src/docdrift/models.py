@@ -69,7 +69,7 @@ class DriftFinding:
     message: str
     documentation_location: Location
     documentation_text: str
-    code_location: Location
+    code_location: Optional[Location]
     old_value: Any
     new_value: Any
     evidence: List[str] = field(default_factory=list)
