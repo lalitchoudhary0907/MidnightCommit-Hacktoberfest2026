@@ -18,7 +18,8 @@ dependencies = [
 dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
-    "ruff>=0.1.0"
+    "ruff>=0.1.0",
+    "pytest-mock>=3.14.0"
 ]
 
 [project.scripts]
@@ -30,16 +31,28 @@ include = ["docdrift*"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
-addopts = "-ra -q --cov=docdrift"
-testpaths = [
-    "tests",
-]
+addopts = "-ra -q"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+# markers = { "sim": "mark tests for simulation", "int": "integration level tests" }
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
 src = ["src", "tests"]
+exclude = [".git", "*.pyi"]
 
-[tool.ruff.lint]
-select = ["E", "F", "I", "W", "UP", "B"]
-ignore = []
+[tool.coverage.run]
+source = ["src", "tests"]
+omit = [".git/*", "**/site-packages/*"]
+branch = 1
+
+[tool.coverage.report]
+exclude_also = [
+    "def __init__",
+    "_ipython_kernel_",
+    "if not self:",
+    "*_private_method_*",
+    "#.*\n",
+]
